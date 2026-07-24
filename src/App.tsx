@@ -11,6 +11,7 @@ import { ProductQuickViewModal } from './components/ProductQuickViewModal';
 import { SearchModal } from './components/SearchModal';
 import { AccountModal } from './components/AccountModal';
 import { LookbookModal } from './components/LookbookModal';
+import { VideoUploadModal } from './components/VideoUploadModal';
 
 import { DEFAULT_VIDEO_PRESETS, NEW_ARRIVALS_DATA } from './data/storeData';
 import { NavTab, CartItem, Product } from './types';
@@ -28,6 +29,7 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isAccountOpen, setIsAccountOpen] = useState<boolean>(false);
   const [isLookbookOpen, setIsLookbookOpen] = useState<boolean>(false);
+  const [isVideoUploadOpen, setIsVideoUploadOpen] = useState<boolean>(false);
 
   // Quick View Product
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
@@ -120,6 +122,7 @@ export default function App() {
             <HeroStage
               currentVideoUrl={heroVideoUrl}
               onVideoChange={(newUrl) => setHeroVideoUrl(newUrl)}
+              onVideoUploadClick={() => setIsVideoUploadOpen(true)}
               onShopClick={() => {
                 const collElem = document.getElementById('collections-section');
                 if (collElem) {
@@ -280,7 +283,7 @@ export default function App() {
               HORBAR INDIVIDUALITY
             </h1>
             <p className="text-neutral-300 text-base leading-relaxed max-w-2xl mx-auto font-light">
-              Founded in 2025, Horbar was built for visionaries who refuse to blend in. We combine heavy 480GSM organic textiles, tactical utility cuts, and modern streetwear aesthetic into statement drops.
+              Founded in 2025, Horbar was built for visionaries who refuse to blend in. We combine heavy 480GSM organic textiles, tactical utility cuts, and modern streetwear aesthetic into state-of-the-art luxury streetwear.
             </p>
             <div className="pt-6">
               <button
@@ -333,7 +336,13 @@ export default function App() {
         onClose={() => setIsLookbookOpen(false)}
         onSelectCategory={handleSelectCollectionCategory}
       />
+
+      <VideoUploadModal
+        isOpen={isVideoUploadOpen}
+        onClose={() => setIsVideoUploadOpen(false)}
+        onVideoSelected={(videoUrl) => setHeroVideoUrl(videoUrl)}
+        currentVideoUrl={heroVideoUrl}
+      />
     </div>
   );
 }
-
