@@ -1,0 +1,6 @@
+{
+  "name": "Horbar | Unique Streetwear",
+  "description": "Unique streetwear fashion storefront featuring MP4 video showcase hero stage, collections grid, and interactive shop.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
