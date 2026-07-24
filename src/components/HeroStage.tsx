@@ -114,21 +114,29 @@ export const HeroStage: React.FC<HeroStageProps> = ({
             }`}
           >
             <video
-              key={currentVideoUrl}
+              key={currentVideoUrl || 'default-vid'}
               ref={videoRef}
-              src={currentVideoUrl || DEFAULT_VIDEO_PRESETS[0].url}
               poster={heroPosterImg}
               preload="auto"
               autoPlay
               muted={isMuted}
               loop
               playsInline
+              crossOrigin="anonymous"
               onLoadedData={() => setVideoLoaded(true)}
               onError={(e) => {
-                console.warn("Video playback error on src:", (e.target as HTMLVideoElement)?.src);
+                console.warn("Video failed on web source, switching to reliable fallback stream:", e);
+                if (currentVideoUrl !== DEFAULT_VIDEO_PRESETS[0].url) {
+                  onVideoChange(DEFAULT_VIDEO_PRESETS[0].url);
+                }
               }}
               className="w-full h-full object-cover rounded-2xl"
-            />
+            >
+              {currentVideoUrl && <source src={currentVideoUrl} type="video/mp4" />}
+              <source src={DEFAULT_VIDEO_PRESETS[0].url} type="video/mp4" />
+              <source src={DEFAULT_VIDEO_PRESETS[1].url} type="video/mp4" />
+              <source src={DEFAULT_VIDEO_PRESETS[2].url} type="video/mp4" />
+            </video>
             
             {/* Sound Indication & Toggle Control */}
             <button
