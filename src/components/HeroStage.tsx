@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { heroPosterImg, DEFAULT_VIDEO_PRESETS } from '../data/storeData';
+import { DEFAULT_VIDEO_PRESETS } from '../data/storeData';
 import { Volume2, VolumeX } from 'lucide-react';
 import { getSavedVideo } from '../lib/videoStorage';
 
@@ -99,14 +99,14 @@ export const HeroStage: React.FC<HeroStageProps> = ({
           <div className="flex flex-wrap items-center gap-4 pt-4">
             <button
               onClick={onShopClick}
-              className="px-8 py-4 rounded-lg bg-[#D4AF37] text-black font-semibold text-sm uppercase tracking-wider hover:bg-[#c49f27] hover:-translate-y-0.5 transition-all duration-200 shadow-[0_0_20px_rgba(212,175,55,0.2)] cursor-pointer"
+              className="px-8 py-4 rounded-lg bg-[#D4AF37] text-black font-semibold text-sm uppercase tracking-wider hover:bg-[#c49f27] hover:-translate-y-0.5 transition-all duration-200 shadow-lg"
             >
               SHOP NOW
             </button>
 
             <button
               onClick={onExploreClick}
-              className="px-8 py-4 rounded-lg bg-[#111111] text-white font-medium text-sm uppercase tracking-wider border border-white/10 hover:border-[#D4AF37] hover:text-[#D4AF37] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+              className="px-8 py-4 rounded-lg bg-[#111111] text-white font-medium text-sm uppercase tracking-wider border border-white/10 hover:border-[#D4AF37] hover:text-[#D4AF37] hover:-translate-y-0.5 transition-all duration-200"
             >
               EXPLORE
             </button>
@@ -128,7 +128,6 @@ export const HeroStage: React.FC<HeroStageProps> = ({
             <video
               key={currentVideoUrl || 'default-vid'}
               ref={videoRef}
-              poster={heroPosterImg}
               preload="metadata"
               autoPlay
               muted={isMuted}
