@@ -1,11 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { DEFAULT_VIDEO_PRESETS } from '../data/storeData';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, Upload } from 'lucide-react';
 import { getSavedVideo } from '../lib/videoStorage';
 
 interface HeroStageProps {
   currentVideoUrl: string;
   onVideoChange: (newUrl: string) => void;
+  onVideoUploadClick: () => void;
   onShopClick: () => void;
   onExploreClick: () => void;
 }
@@ -13,6 +14,7 @@ interface HeroStageProps {
 export const HeroStage: React.FC<HeroStageProps> = ({
   currentVideoUrl,
   onVideoChange,
+  onVideoUploadClick,
   onShopClick,
   onExploreClick,
 }) => {
@@ -172,6 +174,16 @@ export const HeroStage: React.FC<HeroStageProps> = ({
                   <span>Sound On</span>
                 </>
               )}
+            </button>
+
+            {/* Upload Video Button */}
+            <button
+              onClick={onVideoUploadClick}
+              className="absolute bottom-4 right-4 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#D4AF37] text-black backdrop-blur-md transition-all shadow-xl cursor-pointer hover:bg-[#c49f27] hover:-translate-y-0.5 duration-200"
+              title="Upload Custom Video"
+            >
+              <Upload className="w-3.5 h-3.5" />
+              <span>UPLOAD</span>
             </button>
 
             {/* Subtle Gradient overlay for depth */}
